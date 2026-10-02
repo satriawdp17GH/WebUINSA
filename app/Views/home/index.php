@@ -28,7 +28,7 @@
             <div class="loc rise" style="--i:3" x-data="{ o: false }" @click.outside="o = false"
                 @keydown.escape="o = false">
                 <span class="dot" aria-hidden="true"></span>
-                <span>📍 Menampilkan UMKM di sekitar kamu</span>
+                <span><i class="bi bi-geo-alt-fill" style="color:var(--or)"></i> Menampilkan UMKM di sekitar kamu</span>
                 <button type="button" class="locbtn" @click="o = !o" :aria-expanded="o">
                     <?= esc($activeName ?? 'Semua kecamatan') ?> <?= aruna_icon('chevron', 16) ?>
                 </button>
@@ -46,7 +46,7 @@
             <div class="cgrid">
                 <?php foreach ($hero as $n => $t): $k = $n + 1; ?>
                 <div class="tile t<?= $k ?> tone-<?= $k ?>" style="--i:<?= $n ?>;--p:<?= 6 + $n * 3 ?>">
-                    <?= aruna_media($t['photo'], $t['emoji'], $t['label']) ?>
+                    <?= aruna_media($t['photo'], $t['icon'] ?? $t['emoji'] ?? 'bi-shop', $t['label']) ?>
                     <?php if ($t['label']): ?><small><?= esc($t['label']) ?></small><?php endif ?>
                 </div>
                 <?php endforeach ?>
@@ -66,14 +66,14 @@
 <section class="sec-cats">
     <div class="w">
         <div class="cats" role="list">
-            <?php foreach ($categories as $n => [$emo, $label, $slug]): ?>
-            <a class="cat" role="listitem" href="<?= site_url('kategori/' . $slug) ?>" data-reveal
+            <?php foreach ($categories as $n => $c): ?>
+            <a class="cat" role="listitem" href="<?= site_url('kategori/' . $c['slug']) ?>" data-reveal
                 style="--i:<?= $n ?>">
-                <span class="e" aria-hidden="true"><?= $emo ?></span><?= esc($label) ?>
+                <span class="e" aria-hidden="true"><i class="bi <?= esc($c['icon']) ?>"></i></span><?= esc($c['name']) ?>
             </a>
             <?php endforeach ?>
             <a class="cat" role="listitem" href="<?= site_url('jelajahi') ?>" data-reveal style="--i:6">
-                <span class="e" aria-hidden="true"><?= aruna_icon('arrow', 28) ?></span>Lainnya
+                <span class="e" aria-hidden="true"><i class="bi bi-grid-fill"></i></span>Lainnya
             </a>
         </div>
     </div>
@@ -119,7 +119,7 @@
                         <circle cx="150" cy="36" r="5" />
                         <circle cx="316" cy="18" r="5" />
                     </svg>
-                    <span class="rider">🛺</span>
+                    <span class="rider"><i class="bi bi-bicycle"></i></span>
                 </div>
             </div>
             <?php if (empty($gerobak)): ?>
@@ -228,7 +228,7 @@
                     <?php foreach ([35, 52, 44, 70, 60, 88, 100] as $n => $h): ?><i
                         style="--h:<?= $h ?>%;--i:<?= $n ?>"></i><?php endforeach ?>
                 </div>
-                <div class="notif"><span>🔔</span>
+                <div class="notif"><span><i class="bi bi-bell-fill" style="color:var(--or)"></i></span>
                     <div><b>Pesanan baru #A-2041</b><small>2 Nasi Ayam • Rp38.000</small></div>
                 </div>
             </div>
@@ -257,7 +257,7 @@
                         <path d="M300 0 C 280 90 330 170 310 260" />
                     </svg>
                     <span class="pin" :class="{ off: !on }" :style="`left:${spots[i].x}%;top:${spots[i].y}%`">
-                        <i class="ripple"></i><i class="ripple r2"></i><em>🛺</em>
+                        <i class="ripple"></i><i class="ripple r2"></i><em><i class="bi bi-bicycle"></i></em>
                     </span>
                 </div>
                 <div class="mrow">

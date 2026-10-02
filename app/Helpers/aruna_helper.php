@@ -28,16 +28,35 @@ if (! function_exists('fmt_rating')) {
 
 if (! function_exists('aruna_media')) {
     /**
-     * Foto jika ada (file di public/uploads/), jika tidak tampilkan emoji sebagai pengganti.
+     * Foto jika ada (file di public/uploads/), jika tidak tampilkan icon dari library (Bootstrap Icons/SVG) atau emoji fallback.
      */
-    function aruna_media(?string $photo, string $emoji, string $alt = ''): string
+    function aruna_media(?string $photo, ?string $icon, string $alt = ''): string
     {
         if ($photo) {
             return '<img src="' . esc(base_url('uploads/' . ltrim($photo, '/')), 'attr') . '" alt="'
                 . esc($alt, 'attr') . '" loading="lazy" decoding="async">';
         }
 
-        return '<span class="emo" aria-hidden="true">' . esc($emoji) . '</span>';
+        $icon = (string) ($icon ?? 'bi-bag');
+
+        // Jika class Bootstrap Icons (misal: 'bi-shop' atau 'bi bi-shop')
+        if (str_starts_with($icon, 'bi-') || str_starts_with($icon, 'bi ')) {
+            $cls = str_starts_with($icon, 'bi ') ? $icon : 'bi ' . $icon;
+            return '<span class="emo" aria-hidden="true"><i class="' . esc($cls, 'attr') . '"></i></span>';
+        }
+
+        // Jika string sudah berupa elemen SVG
+        if (str_starts_with($icon, '<svg')) {
+            return '<span class="emo" aria-hidden="true">' . $icon . '</span>';
+        }
+
+        // Cek jika merupakan icon SVG yang terdaftar di aruna_icon
+        $svg = aruna_icon($icon, 32);
+        if ($svg !== '') {
+            return '<span class="emo" aria-hidden="true">' . $svg . '</span>';
+        }
+
+        return '<span class="emo" aria-hidden="true">' . esc($icon) . '</span>';
     }
 }
 

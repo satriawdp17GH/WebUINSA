@@ -25,7 +25,7 @@
 
     <div class="db">
         <div class="empty-cart" x-show="!$store.cart.count" x-cloak>
-            <span>🛍️</span>
+            <span><i class="bi bi-bag-x" style="font-size:2.8rem;color:var(--mut)"></i></span>
             <p><b>Keranjangmu masih kosong</b></p>
             <p class="meta">Pilih menu dari UMKM di sekitarmu, lalu tekan tombol +.</p>
             <button type="button" class="btn sm navy" @click="$store.cart.open = false">Mulai belanja</button>
@@ -35,7 +35,8 @@
             <div class="ci">
                 <div class="th">
                     <img x-show="it.img" :src="it.img" :alt="it.name" loading="lazy">
-                    <span x-show="!it.img" x-text="it.emoji" aria-hidden="true"></span>
+                    <span x-show="!it.img && it.emoji?.startsWith('bi-')" :class="'bi ' + it.emoji" aria-hidden="true"></span>
+                    <span x-show="!it.img && !it.emoji?.startsWith('bi-')" x-text="it.emoji" aria-hidden="true"></span>
                 </div>
                 <div class="info">
                     <b x-text="it.name"></b>
