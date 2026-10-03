@@ -125,7 +125,7 @@ section{padding:52px 0}
 .sug a:hover{background:var(--or-soft)}
 
 /* ============ Hero ============ */
-.hero{padding:44px 0 28px;overflow:clip}
+.hero{position:relative;z-index:2;padding:44px 0 28px;overflow-x:clip;overflow-y:visible}
 .hg{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center}
 .hero h1{font-size:clamp(1.85rem,5.4vw,3.8rem);font-weight:800;color:var(--head);letter-spacing:-.03em}
 .lead{font-size:1.12rem;color:var(--mut);max-width:46ch;margin:18px 0 26px}
@@ -330,6 +330,86 @@ section{padding:52px 0}
 .toast.show{opacity:1;translate:-50% 0}
 .toast .ic{color:var(--or-h)}
 .bn{display:none}
+
+/* ============ Halaman daftar: jelajahi, gerobak, produk ============ */
+/* TEMPEL di aruna.css, sebelum blok "Responsive" (@media (max-width:1000px)) */
+.lh{padding:36px 0 8px}
+.lh h1{margin:10px 0 0;font-size:clamp(1.7rem,4.5vw,2.8rem);font-weight:800;letter-spacing:-.03em;color:var(--head)}
+.lh .lead{margin:10px 0 20px}
+.lfilters{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:16px}
+.lfilters select,.lfilters input[type=number]{max-width:100%;padding:9px 16px;font:inherit;font-weight:600;color:var(--tx);background:var(--card);border:1.5px solid var(--line);border-radius:99px;transition:border-color .2s}
+.lfilters input[type=number]{width:132px}
+.lfilters select:hover,.lfilters input:hover,.lfilters select:focus,.lfilters input:focus{border-color:var(--or)}
+.chk{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;font-weight:600;cursor:pointer;background:var(--card);border:1.5px solid var(--line);border-radius:99px}
+.chk input{accent-color:var(--or);width:16px;height:16px}
+.rcount{margin:6px 0 18px}
+.pg{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-top:32px}
+.pgb{display:grid;place-items:center;min-width:42px;height:42px;padding:0 12px;font-weight:700;background:var(--card);border:1.5px solid var(--line);border-radius:13px;transition:border-color .2s,color .2s,background .2s}
+.pgb:hover{border-color:var(--or);color:var(--or-t)}
+.pgb.on{background:var(--navy-2);border-color:var(--navy-2);color:#fff}
+@media (max-width:700px){
+  .lh{padding-top:20px}
+  .lfilters{flex-wrap:nowrap;overflow-x:auto;margin:16px -16px 0;padding:0 16px 6px;scrollbar-width:none}
+  .lfilters::-webkit-scrollbar{display:none}
+  .lfilters>*{flex:none}
+}
+
+/* ============ Halaman detail: umkm/slug, gerobak/slug, produk/slug ============ */
+/* TEMPEL di aruna.css, tepat setelah blok "Halaman daftar" (sebelum @media (max-width:1000px)) */
+.crumb{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-bottom:18px;font-size:.88rem;color:var(--mut)}
+.crumb a{font-weight:600}
+.crumb a:hover{color:var(--or-t)}
+.crumb .bi{font-size:.7rem}
+.dt{padding:28px 0 8px}
+.dt-grid{display:grid;grid-template-columns:1.05fr 1fr;align-items:start;gap:40px}
+.dt-media{position:relative;display:grid;place-items:center;aspect-ratio:4/3;overflow:hidden;border-radius:var(--r);box-shadow:var(--sh)}
+.dt-media>img{width:100%;height:100%;object-fit:cover}
+.dt-media>.emo{font-size:clamp(4.5rem,14vw,8rem)}
+.dt-media.is-closed>img,.dt-media.is-closed>.emo{filter:grayscale(.85);opacity:.7}
+.dt-info{display:grid;gap:14px}
+.dt-info h1{font-size:clamp(1.6rem,4vw,2.5rem);font-weight:800;letter-spacing:-.03em;color:var(--head)}
+.dt-tags,.dt-stats,.dt-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px}
+.dt-actions{gap:10px;margin-top:4px}
+.dt-stats{font-size:.92rem;font-weight:600}
+.dt-stats .ok{color:var(--ok)}
+.dt-stats .bad{color:var(--bad)}
+.dt-desc{color:var(--mut)}
+.dt-price{font-size:clamp(1.7rem,4vw,2.3rem);font-weight:800;color:var(--head)}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:99px;background:var(--or-soft);color:var(--or-t);font-size:.8rem;font-weight:800}
+a.pill:hover{background:var(--or);color:#2a1600}
+.box{padding:20px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh)}
+.box>h3{margin-bottom:12px;color:var(--head)}
+.dt-loc{display:grid;gap:6px;padding:14px 16px}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:28px}
+.fact{padding:14px 16px;background:var(--card);border:1px solid var(--line);border-radius:18px}
+.fact small{display:block;font-size:.78rem;color:var(--mut)}
+.fact b{color:var(--head)}
+.dt-cols{display:grid;grid-template-columns:1fr 1.4fr;gap:20px;align-items:start}
+.hrs{display:grid;gap:4px}
+.hrs div{display:flex;justify-content:space-between;gap:12px;padding:8px 12px;border-radius:12px;font-size:.92rem}
+.hrs .today{background:var(--or-soft);font-weight:800;color:var(--or-t)}
+.rev{padding:12px 0;border-top:1px solid var(--line)}
+.rev:first-of-type{border-top:0;padding-top:0}
+.rev p{margin-top:4px;font-size:.92rem}
+.rev .reply{padding:8px 12px;background:var(--bg);border-radius:12px;font-size:.86rem;color:var(--mut)}
+.seller{display:flex;flex-wrap:wrap;align-items:center;gap:16px}
+.seller .av{display:grid;place-items:center;flex:none;width:60px;height:60px;overflow:hidden;border-radius:18px;font-size:1.9rem}
+.seller .av img{width:100%;height:100%;object-fit:cover}
+.seller-info{display:grid;flex:1;gap:6px;min-width:220px}
+.seller-name{font-size:1.15rem;font-weight:800;color:var(--head)}
+.seller-name:hover{color:var(--or-t)}
+.seller-act{margin:0}
+@media (max-width:1000px){
+  .dt-grid,.dt-cols{grid-template-columns:1fr}
+  .facts{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:700px){
+  .dt{padding-top:16px}
+  .dt-grid{gap:20px}
+  .facts{margin-top:20px;gap:10px}
+  .seller{align-items:flex-start}
+  .seller-act{width:100%}
+}
 
 /* ============ Responsive ============ */
 @media (max-width:1000px){
